@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"flag"
 	"fmt"
+	"github.com/spf13/pflag"
 
 	"github.com/spf13/cobra"
 	"github.com/wearefair/gurl/pkg/config"
@@ -39,9 +39,11 @@ var CallCmd = &cobra.Command{
 
 func init() {
 	flags := CallCmd.Flags()
-	// Add any flags that were registered on the built-in flag package.
-	flags.AddGoFlagSet(flag.CommandLine)
+	ConfigureFlags(flags)
+}
 
+//function to configure flags not only in this project but for those projects that import this one
+func ConfigureFlags(flags *pflag.FlagSet){
 	flags.StringVarP(&uri, "uri", "u", "", "gRPC URI in the form of host:port/service_name/method_name")
 	flags.StringVarP(&data, "data", "d", "", "Data, as JSON string, to send to the gRPC service")
 	CallCmd.MarkFlagRequired("uri")
