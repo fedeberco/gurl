@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/spf13/pflag"
 
@@ -39,6 +40,9 @@ var CallCmd = &cobra.Command{
 
 func init() {
 	flags := CallCmd.Flags()
+	// Add any flags that were registered on the built-in flag package.
+	flags.AddGoFlagSet(flag.CommandLine)
+
 	ConfigureFlags(flags)
 }
 
