@@ -46,7 +46,7 @@ func init() {
 	ConfigureFlags(flags)
 }
 
-// Configure flags not only in this project but for those projects that import this one
+// ConfigureFlags registers the flags not only in this project but for those projects that import this one
 func ConfigureFlags(flags *pflag.FlagSet){
 	flags.StringVarP(&uri, "uri", "u", "", "gRPC URI in the form of host:port/service_name/method_name")
 	flags.StringVarP(&data, "data", "d", "", "Data, as JSON string, to send to the gRPC service")
